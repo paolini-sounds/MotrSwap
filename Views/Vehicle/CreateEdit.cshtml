@@ -1,0 +1,79 @@
+@model VehiclePostingFormViewModel
+
+@{
+    if (Model == null)
+    {
+        ViewData["Title"] = "Create Posting";
+    }
+    else
+    {
+        ViewData["Title"] = Model.Id == 0 ? "Create Posting" : "Edit Posting";
+    }
+}
+<div class="container mt-5">
+    <div class="card shadow p-4 mx-auto" style="max-width: 700px;">
+        <h2 class="mb-4 text-center">@ViewData["Title"]</h2>
+
+        <form asp-action="@(Model.Id == 0 ? "Create" : "Edit")" asp-controller="Vehicle" method="post" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-6">
+                    <input hidden class="form-control" type="number" placeholder="0" asp-for="Id">
+                    <div class="mb-3">
+                        <label asp-for="Year" class="form-label"></label>
+                        <input asp-for="Year" class="form-control"/>
+                        <span asp-validation-for="Year" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Make" class="form-label"></label>
+                        <input asp-for="Make" class="form-control"/>
+                        <span asp-validation-for="Make" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="VehicleModel" class="form-label">Model</label>
+                        <input asp-for="VehicleModel" class="form-control"/>
+                        <span asp-validation-for="VehicleModel" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label asp-for="Mileage" class="form-label"></label>
+                        <input asp-for="Mileage" class="form-control" />
+                        <span asp-validation-for="Mileage" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Price" class="form-label"></label>
+                        <input asp-for="Price" class="form-control" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Image" class="form-label">Upload Image</label>
+                        <input asp-for="Image" class="form-control" type="file" />
+                        <span asp-validation-for="Image" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Description" class="form-label"></label>
+                <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.querySelector('form').addEventListener('submit', function () {
+            console.log('Submitting form...');
+        });
+        console.log(document.querySelectorAll(':invalid'));
+    </script>
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="container mt-5">
+    <div class="text-center py-5">
+        <h1 class="display-4 mb-3">Welcome to <span class="text-primary">MotrSwap</span></h1>
+        <p class="lead">Buy and sell vehicles with ease. Connect with local sellers. List your ride today.</p>
+
+        <div class="mt-4 d-flex justify-content-center gap-3 flex-wrap">
+            <a asp-controller="Vehicle" asp-action="Index" class="btn btn-primary btn-lg">
+                Browse Listings
+            </a>
+
+            @if (!User.Identity.IsAuthenticated)
+            {
+                <a asp-controller="Account" asp-action="Register" class="btn btn-outline-secondary btn-lg">
+                    Register
+                </a>
+                <a asp-controller="Account" asp-action="Login" class="btn btn-outline-secondary btn-lg">
+                    Login
+                </a>
+            }
+            else
+            {
+                <a asp-controller="Vehicle" asp-action="Create" class="btn btn-outline-success btn-lg">
+                    Post a Vehicle
+                </a>
+            }
+        </div>
+    </div>
+</div>
