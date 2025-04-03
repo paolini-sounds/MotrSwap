@@ -5,6 +5,7 @@
 
 # dotenv files
 .env
+.env.*
 
 # User-specific files
 *.rsuser
@@ -484,3 +485,8 @@ $RECYCLE.BIN/
 *.swp
 
 appsettings.Development.json
+
+Dockerfile.local
+*.container
+docker-compose.override.yml
+docker-compose.*.yml
